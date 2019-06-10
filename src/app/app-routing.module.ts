@@ -4,7 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 // Components
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
-// import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { OneUserComponent } from './components/user/one/one.component';
+import { CreateUserComponent } from './components/user/create/create.component';
+import { MapComponent } from './components/map/map.component';
+import { CountryComponent } from './components/country/country.component';
+import { CityComponent } from './components/city/city.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -26,21 +30,36 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'user',
+    path: 'users',
     component: UserComponent,
   },
-  // {
-  //   path: 'subscribe',
-  //   component: SubscribeComponent,
-  // },
   {
-    path: 'profile',
-    component: HomeComponent,
-    canActivate: [AuthenticationGuard]
+    path: 'users/create',
+    component: CreateUserComponent,
+  },
+  {
+    path: 'users/:id',
+    component: OneUserComponent,
+  },
+  {
+    path: 'users/:id/edit',
+    component: CreateUserComponent,
+  },
+  {
+    path: 'map',
+    component: MapComponent,
+  },
+  {
+    path: 'country',
+    component: CountryComponent,
+  },
+  {
+    path: 'city',
+    component: CityComponent,
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'users',
     pathMatch: 'full'
   },
   {

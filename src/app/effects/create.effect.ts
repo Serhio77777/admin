@@ -7,29 +7,28 @@ import { Observable, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { RequestService } from '../services/request.service';
-import { GetOptions } from '../services/interfaces/request.interfaces';
+import { PostOptions } from '../services/interfaces/request.interfaces';
 
 import { State } from '../reducers';
 import {
-  DATA_REQUEST,
-  DATA_REQUEST_SUCCESS,
-  DATA_REQUEST_FAILURE } from '../actions/data.action';
+  CREATE_REQUEST,
+  CREATE_REQUEST_SUCCESS,
+  CREATE_REQUEST_FAILURE } from '../actions/create.action';
 import { OVERLAY_FINISH } from '../actions/header.action';
-import { GetDataResponse } from './interfaces/data.interfaces';
 
 @Injectable()
-export class GetDataEffect {
+export class CreateEffect {
 
-  private propName: string;
-  private options: GetOptions<GetDataResponse[]>;
+  private options: PostOptions<any, any>;
   @Effect()
   public data$: Observable<any> = this.actions$
-    .pipe(ofType(DATA_REQUEST))
+    .pipe(ofType(CREATE_REQUEST))
     .pipe(
       mergeMap((action: any) => {
-        this.propName = action.payload
-        this.requestService.get<GetDataResponse[]>(this.options);
-        return of({ type: 'DATA_REQUEST_PROCESSING' });
+        this.options.url = action.payload.url
+        this.options.body = action.payload.data
+        this.requestService.post<any, any>(this.options);
+        return of({ type: 'CREATE_REQUEST_PROCESSING' });
       })
     );
 
@@ -41,32 +40,24 @@ export class GetDataEffect {
   ) {
     // request config
     this.options = {
-      url: '/users',
+      url: '/user',
       handlers: {
         success: this.success.bind(this),
         error: this.error.bind(this)
-      }
+      },
+      body: {}
     };
   }
   // set data on success
-  public success(data: GetDataResponse[]): void {
-    if (data.length) {
-      data = data.map((el, index) => {
-        el.id = index + 1
-        return el
-      })
-    }
+  public success(data: any): void {
     this.store.dispatch({ type: OVERLAY_FINISH });
-    this.store.dispatch({
-      type: DATA_REQUEST_SUCCESS,
-      payload: { [this.propName]: data }
-    });
+    this.store.dispatch({ type: CREATE_REQUEST_SUCCESS });
   }
   // error handler
   public error(httpErrorResponse: HttpErrorResponse): void {
     this.store.dispatch({ type: OVERLAY_FINISH });
     this.store.dispatch({
-      type: DATA_REQUEST_FAILURE,
+      type: CREATE_REQUEST_FAILURE,
       payload: {
         error: httpErrorResponse
       }
