@@ -12,6 +12,7 @@ import {
   MatInputModule,
   MatCardModule,
   MatMenuModule,
+  MatSelectModule,
   MatTableModule,
   MatToolbarModule,
   MatPaginatorModule,
@@ -57,6 +58,8 @@ import { OneUserComponent } from './components/user/one/one.component';
 import { CreateUserComponent } from './components/user/create/create.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CountryComponent } from './components/country/country.component';
+import { CreateCountryComponent } from './components/country/create-country/create-country.component';
+import { CreateCityComponent } from './components/country/create-city/create-city.component';
 import { CityComponent } from './components/city/city.component';
 import { PlaceComponent } from './components/city/place/place.component';
 import { TripComponent } from './components/city/trip/trip.component';
@@ -93,7 +96,9 @@ import { HeaderComponent } from './components/parts/header/header.component';
     LoginComponent,
     RegistrationComponent,
     DiComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateCityComponent,
+    CreateCountryComponent
   ],
   imports: [
     BrowserModule,
@@ -121,6 +126,7 @@ import { HeaderComponent } from './components/parts/header/header.component';
     MatInputModule,
     MatCardModule,
     MatMenuModule,
+    MatSelectModule,
     MatToolbarModule,
     MatDatepickerModule,
     MatNativeDateModule
@@ -151,7 +157,7 @@ import { HeaderComponent } from './components/parts/header/header.component';
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorComponent, ModalComponent]
+  entryComponents: [ErrorComponent, ModalComponent, CreateCountryComponent, CreateCityComponent]
 })
 export class AppModule { }
      

@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+  <p>Create new country</p>
+  <mat-form-field>
+    <input matInput placeholder="Country" required [(ngModel)]="country">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="create()">{{permission ? 'Save' : 'Create'}}</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+</div>

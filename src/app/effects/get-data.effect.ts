@@ -20,14 +20,13 @@ import { GetDataResponse } from './interfaces/data.interfaces';
 @Injectable()
 export class GetDataEffect {
 
-  private propName: string;
   private options: GetOptions<GetDataResponse[]>;
   @Effect()
   public data$: Observable<any> = this.actions$
     .pipe(ofType(DATA_REQUEST))
     .pipe(
       mergeMap((action: any) => {
-        this.propName = action.payload
+        this.options.url = action.payload.url;
         this.requestService.get<GetDataResponse[]>(this.options);
         return of({ type: 'DATA_REQUEST_PROCESSING' });
       })
@@ -50,16 +49,18 @@ export class GetDataEffect {
   }
   // set data on success
   public success(data: GetDataResponse[]): void {
-    if (data.length) {
-      data = data.map((el, index) => {
-        el.id = index + 1
+    // data = data.data;
+    const propName = Object.keys(data)[0];
+    if (data[propName].length) {
+      data = data[propName].map((el, index) => {
+        el.row = index + 1
         return el
       })
     }
     this.store.dispatch({ type: OVERLAY_FINISH });
     this.store.dispatch({
       type: DATA_REQUEST_SUCCESS,
-      payload: { [this.propName]: data }
+      payload: { [propName]: data }
     });
   }
   // error handler

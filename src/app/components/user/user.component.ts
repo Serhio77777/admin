@@ -29,7 +29,9 @@ export class UserComponent implements OnInit {
     this.store.dispatch({ type: OVERLAY_START });
     this.store.dispatch({ 
       type: DATA_REQUEST,
-      payload: 'users'
+      payload: {
+        url: '/users?res=full',
+      }
     });
     this.dataStore.model$ = store.select<any>('data').subscribe(data => {
       this.dataSource = new MatTableDataSource(data.users);

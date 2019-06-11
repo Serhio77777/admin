@@ -1,0 +1,17 @@
+<div mat-dialog-content>
+  <p>Create new city</p>
+  <mat-form-field>
+    <input matInput placeholder="City" required [(ngModel)]="city">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Select country</mat-label>
+    <mat-select required [(ngModel)]="countryId">
+      <option label="--select country --"></option>
+      <mat-option *ngFor="let country of countries" [value]="country.id">{{country.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="create()">{{permission ? 'Save' : 'Create'}}</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+</div>

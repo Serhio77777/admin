@@ -20,7 +20,8 @@ export const data: ActionReducer<any> = (state: Data = defaultDataState, action:
         ...state
       };
     case DATA_REQUEST_SUCCESS:
-      return action.payload;
+      state = update(state, { $merge: action.payload});
+      return state;
     case DATA_REQUEST_FAILURE:
       state = update(state, { $merge: action.payload});
       return {
