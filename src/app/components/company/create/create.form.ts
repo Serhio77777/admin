@@ -19,18 +19,12 @@ export default class CreateUserForm {
     this.formGroup = this.formBuilder.group({
       image: new FormControl(this.model.image),
       name: new FormControl(this.model.name, [Validators.required]),
-      description: new FormControl(this.model.description),
-      site: new FormControl(this.model.site),
-      companyId: new FormControl(this.model.companyId, [Validators.required]),
-      cityId: new FormControl(this.model.cityId, [Validators.required])
+      discount: new FormControl(this.model.discount, [Validators.required])
     });
     this.formGroup.valueChanges.subscribe(data => {
       this.model.image = data.image;
       this.model.name = data.name;
-      this.model.description = data.description;
-      this.model.site = data.site;
-      this.model.companyId = data.companyId;
-      this.model.cityId = data.cityId;
+      this.model.discount = data.discount;
     });
   }
   // form update

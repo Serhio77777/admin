@@ -9,8 +9,11 @@ import { CreateUserComponent } from './components/user/create/create.component';
 import { MapComponent } from './components/map/map.component';
 import { CountryComponent } from './components/country/country.component';
 import { TipComponent } from './components/tip/tip.component';
-import { OneTipComponent } from './components/tip/one/one.component';
 import { CreateTipComponent } from './components/tip/create/create.component';
+import { CompanyComponent } from './components/company/company.component';
+import { CreateCompanyComponent } from './components/company/create/create.component';
+import { DiscountComponent } from './components/discount/discount.component';
+import { CreateDiscountComponent } from './components/discount/create/create.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -64,12 +67,32 @@ export const routes: Routes = [
     component: CreateTipComponent,
   },
   {
-    path: 'tips/:id',
-    component: OneTipComponent,
-  },
-  {
     path: 'tips/:id/edit',
     component: CreateTipComponent,
+  },
+  {
+    path: 'companies',
+    component: CompanyComponent,
+  },
+  {
+    path: 'companies/create',
+    component: CreateCompanyComponent,
+  },
+  {
+    path: 'companies/:id/edit',
+    component: CreateCompanyComponent,
+  },
+  {
+    path: 'discountes',
+    component: DiscountComponent,
+  },
+  {
+    path: 'discountes/create',
+    component: CreateDiscountComponent,
+  },
+  {
+    path: 'discountes/:id/edit',
+    component: CreateDiscountComponent,
   },
   {
     path: '',

@@ -5,15 +5,16 @@ import { Store } from '@ngrx/store';
 
 import { State } from '../../reducers';
 import { SHOW_HEADER, OVERLAY_START } from '../../actions/header.action';
+import { DELETE_REQUEST } from '../../actions/delete.action';
 import { Data, DATA_REQUEST } from '../../actions/data.action';
 
 @Component({
-  selector: 'admin-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'admin-discount',
+  templateUrl: './discount.component.html',
+  styleUrls: ['./discount.component.scss']
 })
-export class UserComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'image', 'name', 'role'];
+export class DiscountComponent implements OnInit {
+  public displayedColumns: string[] = ['id', 'image', 'name', 'description', 'company', 'city', 'site', 'buttons'];
   public dataSource: MatTableDataSource<any>;
   public dataStore: any = {};
 
@@ -30,11 +31,11 @@ export class UserComponent implements OnInit {
     this.store.dispatch({ 
       type: DATA_REQUEST,
       payload: {
-        url: '/users?res=full',
+        url: '/discountes?res=full',
       }
     });
     this.dataStore.model$ = store.select<any>('data').subscribe(data => {
-      this.dataSource = new MatTableDataSource(data.users);
+      this.dataSource = new MatTableDataSource(data.discountes);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -53,12 +54,18 @@ export class UserComponent implements OnInit {
     }
   }
 
-  public goNext(id: number | string): void {
-    this.router.navigate([`users/${id}`])
+  public create(id: number): void {
+    this.router.navigate([id ? `/discountes/${id}/edit` : `/discountes/create`])
   }
 
-  public create(): void {
-    this.router.navigate([`/users/create`])
+  public delete(id: number): void {
+    this.store.dispatch({ 
+      type: DELETE_REQUEST,
+      payload: {
+        url: `/discount/${id}`,
+        request: `/discountes?res=full`
+      }
+    });
   }
 
 }

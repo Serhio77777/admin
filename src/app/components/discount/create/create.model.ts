@@ -1,7 +1,8 @@
 export default class CreateUserModel {
-  public email: string = '';
-  public password: string = '';
-  public firstName: string = '';
-  public surName: string = '';
-  public role: string = 'USER';
+  public image: string = '';
+  public name: string = '';
+  public description: string = '';
+  public site: string = '';
+  public companyId: number;
+  public cityId: number;
 }

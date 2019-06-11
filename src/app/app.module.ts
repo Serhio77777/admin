@@ -64,9 +64,11 @@ import { CityComponent } from './components/city/city.component';
 import { PlaceComponent } from './components/city/place/place.component';
 import { TripComponent } from './components/city/trip/trip.component';
 import { TipComponent } from './components/tip/tip.component';
-import { OneTipComponent } from './components/tip/one/one.component';
 import { CreateTipComponent } from './components/tip/create/create.component';
-import { DiscountComponent } from './components/city/discount/discount.component';
+import { CompanyComponent } from './components/company/company.component';
+import { CreateCompanyComponent } from './components/company/create/create.component';
+import { DiscountComponent } from './components/discount/discount.component';
+import { CreateDiscountComponent } from './components/discount/create/create.component';
 import { ErrorComponent } from './components/parts/error/error.component';
 import { ModalComponent } from './components/parts/modal/modal.component';
 import { ShowOneComponent } from './components/parts/show-one/show-one.component';
@@ -91,9 +93,11 @@ import { HeaderComponent } from './components/parts/header/header.component';
     PlaceComponent,
     TripComponent,
     TipComponent,
-    OneTipComponent,
     CreateTipComponent,
+    CompanyComponent,
+    CreateCompanyComponent,
     DiscountComponent,
+    CreateDiscountComponent,
     ErrorComponent,
     ModalComponent,
     ShowOneComponent,

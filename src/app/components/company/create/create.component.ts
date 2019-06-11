@@ -13,19 +13,18 @@ import { DATA_ONE_REQUEST } from '../../../actions/data-one.action';
 import { DATA_REQUEST } from '../../../actions/data.action';
 
 @Component({
-  selector: 'admin-discount-create',
+  selector: 'admin-company-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateDiscountComponent implements OnInit, OnDestroy {
+export class CreateCompanyComponent implements OnInit, OnDestroy {
 
   private model: CreateModel;
   public form: CreateForm;
   public isFormErrorMessage: boolean = false;
   public permission: boolean = !!window.location.href.match('edit');
   private id: string;
-  public cities: any = [];
-  public companies: any = [];
+  public discountes: any = [];
   public subscribtion$: any = null; 
   public subscribtion1$: any = null; 
 
@@ -38,30 +37,20 @@ export class CreateDiscountComponent implements OnInit, OnDestroy {
     this.form = new CreateForm(this.model);
 
     this.subscribtion$ = store.select<any>('dataOne').subscribe(data => {
-      if (data.discount && !this.form.model.name) {
-        this.form.patchForm(data.discount);
+      if (data.company) {
+        this.form.patchForm(data.company);
       }
     });
     this.subscribtion1$ = store.select<any>('data').subscribe(data => {
-      if (data.cities) {
-        this.cities = data.cities;
-      }
-      if (data.companies) {
-        this.companies = data.companies;
+      if (data.discountes) {
+        this.discountes = data.discountes;
       }
     });
 
     this.store.dispatch({ 
       type: DATA_REQUEST,
       payload: {
-        url: '/cities?res=full',
-      }
-    });
-
-    this.store.dispatch({ 
-      type: DATA_REQUEST,
-      payload: {
-        url: '/companies?res=full',
+        url: '/discountes?res=full',
       }
     });
 
@@ -72,8 +61,8 @@ export class CreateDiscountComponent implements OnInit, OnDestroy {
         this.store.dispatch({ 
           type: DATA_ONE_REQUEST,
           payload: {
-            propName: 'discount',
-            url: `/discount/${this.id}`
+            propName: 'company',
+            url: `/company/${this.id}`
           }
         });
       }
@@ -92,14 +81,14 @@ export class CreateDiscountComponent implements OnInit, OnDestroy {
     this.store.dispatch({
       type: this.permission ? UPDATE_REQUEST : CREATE_REQUEST,
       payload: {
-        url: this.permission ? `/discount/${this.id}` : '/discount',
+        url: this.permission ? `/company/${this.id}` : '/company',
         data: this.form.model
       }
     });
   }
 
   public goBack(): void {
-    this.router.navigate([`/discountes`])
+    this.router.navigate([`/companies`])
   }
 
   // make subscribe on a component initialization
