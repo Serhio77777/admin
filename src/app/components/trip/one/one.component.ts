@@ -12,7 +12,7 @@ import { Data, DATA_ONE_REQUEST } from '../../../actions/data-one.action';
   templateUrl: './one.component.html',
   styleUrls: ['./one.component.scss']
 })
-export class OnePlaceComponent implements OnInit {
+export class OneTripComponent implements OnInit {
 
   public model: any = {};
   private id: string;

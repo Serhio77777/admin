@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import CreateModel from './create.model';
 
 /*
@@ -17,45 +17,19 @@ export default class CreateUserForm {
   // set form fields with validation rules
   public createForm() {
     this.formGroup = this.formBuilder.group({
-      cityId: new FormControl(this.model.cityId, [Validators.required]),
+      image: new FormControl(this.model.image),
       name: new FormControl(this.model.name, [Validators.required]),
-      description: new FormControl(this.model.description),
-      rate: new FormControl(this.model.rate, [Validators.required]),
-      images: this.formBuilder.array([])
+      discount: new FormControl(this.model.discount, [Validators.required])
     });
     this.formGroup.valueChanges.subscribe(data => {
-      this.model.images = data.images;
+      this.model.image = data.image;
       this.model.name = data.name;
-      this.model.cityId = data.cityId;
-      this.model.rate = data.rate;
-      this.model.description = data.description;
+      this.model.discount = data.discount;
     });
-  }
-  get propsForms() {
-    return this.formGroup.get('images') as FormArray
-  }
-
-  public addProp(name = ''): void {
-    const prop = this.formBuilder.group({ 
-      image: new FormControl(name, [Validators.required])
-    })
-    this.propsForms.push(prop);
-  }
-
-  public deleteProp(i: number): void {
-    this.propsForms.removeAt(i)
   }
   // form update
   public patchForm(data: any): void {
-    data.images.filter(el => !!el).forEach(el => this.addProp(el))
-    delete data.images;
-    delete data.coords;
-    this.formGroup.patchValue({
-      cityId: data.cityId,
-      name: data.name,
-      description: data.description,
-      rate: data.rate
-    });
+    this.formGroup.patchValue(data);
     Object.keys(data).forEach(field => {
       this.model[field] = data[field];
     });

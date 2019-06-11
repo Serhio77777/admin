@@ -17,6 +17,12 @@ import { CreateDiscountComponent } from './components/discount/create/create.com
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PlaceComponent } from './components/place/place.component';
+import { CreatePlaceComponent } from './components/place/create/create.component';
+import { OnePlaceComponent } from './components/place/one/one.component';
+import { TripComponent } from './components/trip/trip.component';
+import { CreateTripComponent } from './components/trip/create/create.component';
+import { OneTripComponent } from './components/trip/one/one.component';
 
 // Guards
 import { AuthenticationGuard } from './guards/authentication-guard';
@@ -93,6 +99,38 @@ export const routes: Routes = [
   {
     path: 'discountes/:id/edit',
     component: CreateDiscountComponent,
+  },
+    {
+    path: 'places',
+    component: PlaceComponent,
+  },
+  {
+    path: 'places/create',
+    component: CreatePlaceComponent,
+  },
+  {
+    path: 'places/:id',
+    component: OnePlaceComponent,
+  },
+  {
+    path: 'places/:id/edit',
+    component: CreatePlaceComponent,
+  },
+    {
+    path: 'trips',
+    component: TripComponent,
+  },
+  {
+    path: 'trips/create',
+    component: CreateTripComponent,
+  },
+  {
+    path: 'trips/:id',
+    component: OneTripComponent,
+  },
+  {
+    path: 'trips/:id/edit',
+    component: CreateTripComponent,
   },
   {
     path: '',

@@ -1,0 +1,17 @@
+
+<button mat-raised-button color="primary" (click)="goBack()" class="btn btn-primary">Back</button>
+<button mat-raised-button color="primary" (click)="edit()" class="btn btn-primary">Edit</button>
+<mat-card class="main-card" *ngIf="model">
+  <mat-card-content>
+    <div class="main-info">
+      <div class="block">
+        <img class="header-image" src="{{model.image ? model.image : 'https://questortech.com/wp-content/uploads/2018/07/placeholder-man.png'}}">
+      </div>
+      <div class="block">
+        <p>Name: {{model.firstName}} {{model.surName}}</p>
+        <p>Email: {{model.email}}</p>
+        <p>Role: {{model.role}}</p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -19,6 +19,7 @@ import {
   MatDatepickerModule,
   MatNativeDateModule
 } from '@angular/material';
+import { AgmCoreModule } from '@agm/core';
 
 import { environment } from '../environments/environment';
 
@@ -60,9 +61,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CountryComponent } from './components/country/country.component';
 import { CreateCountryComponent } from './components/country/create-country/create-country.component';
 import { CreateCityComponent } from './components/country/create-city/create-city.component';
-import { CityComponent } from './components/city/city.component';
-import { PlaceComponent } from './components/city/place/place.component';
-import { TripComponent } from './components/city/trip/trip.component';
+import { PlaceComponent } from './components/place/place.component';
+import { CreatePlaceComponent } from './components/place/create/create.component';
+import { OnePlaceComponent } from './components/place/one/one.component';
+import { TripComponent } from './components/trip/trip.component';
+import { CreateTripComponent } from './components/trip/create/create.component';
+import { OneTripComponent } from './components/trip/one/one.component';
 import { TipComponent } from './components/tip/tip.component';
 import { CreateTipComponent } from './components/tip/create/create.component';
 import { CompanyComponent } from './components/company/company.component';
@@ -75,7 +79,6 @@ import { ShowOneComponent } from './components/parts/show-one/show-one.component
 import { CreateComponent } from './components/parts/create/create.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { DiComponent } from './components/city/di/di.component';
 import { HeaderComponent } from './components/parts/header/header.component';
 
 @NgModule({
@@ -89,9 +92,12 @@ import { HeaderComponent } from './components/parts/header/header.component';
     CreateComponent,
     MapComponent,
     CountryComponent,
-    CityComponent,
     PlaceComponent,
+    CreatePlaceComponent,
+    OnePlaceComponent,
     TripComponent,
+    CreateTripComponent,
+    OneTripComponent,
     TipComponent,
     CreateTipComponent,
     CompanyComponent,
@@ -103,7 +109,6 @@ import { HeaderComponent } from './components/parts/header/header.component';
     ShowOneComponent,
     LoginComponent,
     RegistrationComponent,
-    DiComponent,
     HeaderComponent,
     CreateCityComponent,
     CreateCountryComponent
@@ -137,6 +142,9 @@ import { HeaderComponent } from './components/parts/header/header.component';
     MatSelectModule,
     MatToolbarModule,
     MatDatepickerModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC20W4WxCKZ_vgEe1pXacKNXe3bEOpG2o4'
+    }),
     MatNativeDateModule
   ],
   providers: [

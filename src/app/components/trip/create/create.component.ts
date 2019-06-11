@@ -17,34 +17,16 @@ import { DATA_REQUEST } from '../../../actions/data.action';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreatePlaceComponent implements OnInit, OnDestroy {
+export class CreateTripComponent implements OnInit, OnDestroy {
 
   private model: CreateModel;
   public form: CreateForm;
   public isFormErrorMessage: boolean = false;
   public permission: boolean = !!window.location.href.match('edit');
   private id: string;
-  public cities: any = [];
+  public discountes: any = [];
   public subscribtion$: any = null; 
   public subscribtion1$: any = null; 
-
-  public map: any = {
-    lat: 64.09934734290941,
-    lng: -21.89826329285006,
-    zoom: 5
-  }
-
-  public marker: any = {
-    lat: 64.09934734290941,
-    lng: -21.89826329285006
-  }
-
-  public placeMarker($event): void {
-    this.marker.lat = $event.coords.lat
-    this.marker.lng = $event.coords.lng
-    // console.log($event.coords.lat);
-    // console.log($event.coords.lng);
-  }
 
   constructor(
     private store: Store<State>,
@@ -55,22 +37,20 @@ export class CreatePlaceComponent implements OnInit, OnDestroy {
     this.form = new CreateForm(this.model);
 
     this.subscribtion$ = store.select<any>('dataOne').subscribe(data => {
-      if (data.place) {
-        this.marker.lat = data.place.coords[0].lat
-        this.marker.lng = data.place.coords[0].lng
-        this.form.patchForm(data.place);
+      if (data.company) {
+        this.form.patchForm(data.company);
       }
     });
     this.subscribtion1$ = store.select<any>('data').subscribe(data => {
-      if (data.cities) {
-        this.cities = data.cities;
+      if (data.discountes) {
+        this.discountes = data.discountes;
       }
     });
 
     this.store.dispatch({ 
       type: DATA_REQUEST,
       payload: {
-        url: '/cities?res=full',
+        url: '/discountes?res=full',
       }
     });
 
@@ -81,8 +61,8 @@ export class CreatePlaceComponent implements OnInit, OnDestroy {
         this.store.dispatch({ 
           type: DATA_ONE_REQUEST,
           payload: {
-            propName: 'place',
-            url: `/place/${this.id}`
+            propName: 'company',
+            url: `/company/${this.id}`
           }
         });
       }
@@ -97,20 +77,18 @@ export class CreatePlaceComponent implements OnInit, OnDestroy {
 
   // start login request
   public create(): void {
-    const data: any = this.form.model
-    data.coords = [this.marker]
     this.store.dispatch({ type: OVERLAY_START });
     this.store.dispatch({
       type: this.permission ? UPDATE_REQUEST : CREATE_REQUEST,
       payload: {
-        url: this.permission ? `/place/${this.id}` : '/place',
-        data: data
+        url: this.permission ? `/company/${this.id}` : '/company',
+        data: this.form.model
       }
     });
   }
 
   public goBack(): void {
-    this.router.navigate([`/places`])
+    this.router.navigate([`/companies`])
   }
 
   // make subscribe on a component initialization

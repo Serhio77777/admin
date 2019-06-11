@@ -4,52 +4,60 @@
       <h1>{{permission ? 'Update' : 'Create'}}</h1>
       <form name="form" [formGroup]="form.formGroup" novalidate>
         <div class="form-group">
-          <mat-form-field class="form-field">
-            <input matInput placeholder="Email" type="text" class="form-control" name="email" formControlName="email" required />
-          </mat-form-field>
-           <div class="alert alert-danger" *ngIf="form.getControl('email').invalid && (form.getControl('email').dirty || form.getControl('email').touched)">
-             <div *ngIf="form.getControl('email').errors.required" class="help-block">Email is required</div>
-           </div>
-        </div>
+          <button mat-raised-button color="primary" (click)="form.addProp()" class="btn btn-primary">Add Image</button>
+          <div class="form-field" formArrayName="images">
+
+              <div *ngFor="let prop of form.propsForms.controls; let i = index" 
+                    [formGroupName]="i">
+        
+                <mat-form-field class="form-field">
+                  <input matInput placeholder="Image" type="text" class="form-control" name="image" formControlName="image" required />
+                </mat-form-field>
+                <div class="alert alert-danger" *ngIf="prop.get('image').invalid && (prop.get('image').dirty || prop.get('image').touched)">
+                  <div *ngIf="prop.get('image').errors.required" class="help-block">Image is required</div>
+                </div>
+        
+                <button mat-raised-button color="primary" (click)="form.deleteProp(i)" class="btn btn-primary">Delete</button>
+        
+              </div>          
+            </div>
+          </div>
         <div class="form-group">
           <mat-form-field class="form-field">
-            <input matInput placeholder="First Name" type="text" class="form-control" name="firstName" formControlName="firstName" required />
+            <input matInput placeholder="Name" type="text" class="form-control" name="name" formControlName="name" required />
           </mat-form-field>
-            <div class="alert alert-danger" *ngIf="form.getControl('firstName').invalid && (form.getControl('firstName').dirty || form.getControl('firstName').touched)">
-              <div *ngIf="form.getControl('firstName').errors.required" class="help-block">First Name is required</div>
+            <div class="alert alert-danger" *ngIf="form.getControl('name').invalid && (form.getControl('name').dirty || form.getControl('name').touched)">
+              <div *ngIf="form.getControl('name').errors.required" class="help-block"> Name is required</div>
             </div>
         </div>
         <div class="form-group">
           <mat-form-field class="form-field">
-            <input matInput placeholder="Surname" type="text" class="form-control" name="surName" formControlName="surName" required />
+            <input matInput placeholder="Description" type="text" class="form-control" name="description" formControlName="description" />
           </mat-form-field>
-            <div class="alert alert-danger" *ngIf="form.getControl('surName').invalid && (form.getControl('surName').dirty || form.getControl('surName').touched)">
-              <div *ngIf="form.getControl('surName').errors.required" class="help-block">Surname is required</div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Rate" type="number" class="form-control" name="rate" formControlName="rate" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('rate').invalid && (form.getControl('rate').dirty || form.getControl('rate').touched)">
+              <div *ngIf="form.getControl('rate').errors.required" class="help-block"> Rate is required</div>
             </div>
         </div>
         <div class="form-group">
           <mat-form-field class="form-field">
-          <mat-label>Select user role</mat-label>
-            <select matNativeControl required formControlName="role">
-              <option label="--select role --"></option>
-              <option value="USER">USER</option>
-              <option value="ADMIN">ADMIN</option>
-              <option value="SUPER_ADMIN">SUPER_ADMIN</option>
-            </select>
+          <mat-label>Select city</mat-label>
+            <mat-select formControlName="cityId">
+              <mat-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</mat-option>
+            </mat-select>
           </mat-form-field>
-            <div class="alert alert-danger" *ngIf="form.getControl('role').invalid && (form.getControl('role').dirty || form.getControl('role').touched)">
-              <div *ngIf="form.getControl('role').errors.required" class="help-block">Role is required</div>
-            </div>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="form-field">
-            <input matInput placeholder="Password" type="password" class="form-control" name="password" formControlName="password" required />
-          </mat-form-field>
-          <div class="alert alert-danger" *ngIf="form.getControl('password').invalid && (form.getControl('password').dirty || form.getControl('password').touched)">
-            <div *ngIf="form.getControl('password').errors.required" class="help-block">Password is required</div>
-            <div *ngIf="form.getControl('password').hasError('minlength')" class="help-block">Password must has more than 8 characters</div>
+          <div class="alert alert-danger" *ngIf="form.getControl('cityId').invalid && (form.getControl('cityId').dirty || form.getControl('cityId').touched)">
+            <div *ngIf="form.getControl('cityId').errors.required" class="help-block">City is required</div>
           </div>
         </div>
+        <agm-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" (mapClick)="placeMarker($event)">
+          <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [label]="'M'">
+          </agm-marker>
+        </agm-map>
         <div class="form-group">
           <button mat-raised-button color="primary" (click)="create()" class="btn btn-primary">{{permission ? 'Update' : 'Create'}}</button>
           <img *ngIf="loading"
