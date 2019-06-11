@@ -13,7 +13,7 @@ import { DATA_ONE_REQUEST } from '../../../actions/data-one.action';
 import { DATA_REQUEST } from '../../../actions/data.action';
 
 @Component({
-  selector: 'admin-company-create',
+  selector: 'admin-trip-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
@@ -24,9 +24,20 @@ export class CreateTripComponent implements OnInit, OnDestroy {
   public isFormErrorMessage: boolean = false;
   public permission: boolean = !!window.location.href.match('edit');
   private id: string;
-  public discountes: any = [];
+  public users: any = [];
+  public places: any = [];
   public subscribtion$: any = null; 
   public subscribtion1$: any = null; 
+
+  public map: any = {
+    lat: 64.09934734290941,
+    lng: -21.89826329285006,
+    zoom: 10
+  }
+
+  public checkInForm(id): boolean {
+    return this.form.model.places && this.form.model.places.find(el => el === id)
+  }
 
   constructor(
     private store: Store<State>,
@@ -37,20 +48,29 @@ export class CreateTripComponent implements OnInit, OnDestroy {
     this.form = new CreateForm(this.model);
 
     this.subscribtion$ = store.select<any>('dataOne').subscribe(data => {
-      if (data.company) {
-        this.form.patchForm(data.company);
+      if (data.trip && !this.form.model.name) {
+        this.form.patchForm(data.trip);
       }
     });
     this.subscribtion1$ = store.select<any>('data').subscribe(data => {
-      if (data.discountes) {
-        this.discountes = data.discountes;
+      if (data.users) {
+        this.users = data.users;
+      }
+      if (data.places) {
+        this.places = data.places;
       }
     });
 
     this.store.dispatch({ 
       type: DATA_REQUEST,
       payload: {
-        url: '/discountes?res=full',
+        url: '/places?res=full',
+      }
+    });
+    this.store.dispatch({ 
+      type: DATA_REQUEST,
+      payload: {
+        url: '/users?res=full',
       }
     });
 
@@ -61,8 +81,8 @@ export class CreateTripComponent implements OnInit, OnDestroy {
         this.store.dispatch({ 
           type: DATA_ONE_REQUEST,
           payload: {
-            propName: 'company',
-            url: `/company/${this.id}`
+            propName: 'trip',
+            url: `/trip/${this.id}`
           }
         });
       }
@@ -81,14 +101,14 @@ export class CreateTripComponent implements OnInit, OnDestroy {
     this.store.dispatch({
       type: this.permission ? UPDATE_REQUEST : CREATE_REQUEST,
       payload: {
-        url: this.permission ? `/company/${this.id}` : '/company',
+        url: this.permission ? `/trip/${this.id}` : '/trip',
         data: this.form.model
       }
     });
   }
 
   public goBack(): void {
-    this.router.navigate([`/companies`])
+    this.router.navigate([`/trips`])
   }
 
   // make subscribe on a component initialization

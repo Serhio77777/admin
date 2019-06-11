@@ -6,7 +6,6 @@ import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { OneUserComponent } from './components/user/one/one.component';
 import { CreateUserComponent } from './components/user/create/create.component';
-import { MapComponent } from './components/map/map.component';
 import { CountryComponent } from './components/country/country.component';
 import { TipComponent } from './components/tip/tip.component';
 import { CreateTipComponent } from './components/tip/create/create.component';
@@ -55,10 +54,6 @@ export const routes: Routes = [
   {
     path: 'users/:id/edit',
     component: CreateUserComponent,
-  },
-  {
-    path: 'map',
-    component: MapComponent,
   },
   {
     path: 'country',

@@ -14,7 +14,7 @@ import { Data, DATA_REQUEST } from '../../actions/data.action';
   styleUrls: ['./trip.component.scss']
 })
 export class TripComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'image', 'name', 'discountes', 'buttons'];
+  public displayedColumns: string[] = ['id', 'places', 'name', 'description', 'buttons'];
   public dataSource: MatTableDataSource<any>;
   public dataStore: any = {};
 
@@ -31,11 +31,11 @@ export class TripComponent implements OnInit {
     this.store.dispatch({ 
       type: DATA_REQUEST,
       payload: {
-        url: '/companies?res=full',
+        url: '/trips?res=full',
       }
     });
     this.dataStore.model$ = store.select<any>('data').subscribe(data => {
-      this.dataSource = new MatTableDataSource(data.companies);
+      this.dataSource = new MatTableDataSource(data.trips);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -55,15 +55,15 @@ export class TripComponent implements OnInit {
   }
 
   public create(id: number): void {
-    this.router.navigate([id ? `/companies/${id}/edit` : `/companies/create`])
+    this.router.navigate([id ? `/trips/${id}/edit` : `/trips/create`])
   }
 
   public delete(id: number): void {
     this.store.dispatch({ 
       type: DELETE_REQUEST,
       payload: {
-        url: `/company/${id}`,
-        request: `/companies?res=full`
+        url: `/trip/${id}`,
+        request: `/trips?res=full`
       }
     });
   }

@@ -1,5 +1,6 @@
-export default class CreateUserModel {
-  public image: string = '';
+export default class CreateTripModel {
+  public places: any;
   public name: string = '';
-  public discount: string = '';
+  public userId: number;
+  public description: string = '';
 }

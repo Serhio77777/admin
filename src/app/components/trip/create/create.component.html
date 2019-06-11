@@ -5,11 +5,6 @@
       <form name="form" [formGroup]="form.formGroup" novalidate>
         <div class="form-group">
           <mat-form-field class="form-field">
-            <input matInput placeholder="Image" type="text" class="form-control" name="image" formControlName="image" />
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="form-field">
             <input matInput placeholder="Name" type="text" class="form-control" name="name" formControlName="name" required />
           </mat-form-field>
             <div class="alert alert-danger" *ngIf="form.getControl('name').invalid && (form.getControl('name').dirty || form.getControl('name').touched)">
@@ -18,15 +13,36 @@
         </div>
         <div class="form-group">
           <mat-form-field class="form-field">
-          <mat-label>Select discount</mat-label>
-            <mat-select formControlName="discount" multiple>
-              <mat-option *ngFor="let discount of discountes" [value]="discount.id">{{discount.name}}</mat-option>
+            <input matInput placeholder="Description" type="text" class="form-control" name="description" formControlName="description" />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+          <mat-label>Select user</mat-label>
+            <mat-select formControlName="userId">
+              <mat-option *ngFor="let user of users" [value]="user.id">{{user.firstName}} {{user.surName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="alert alert-danger" *ngIf="form.getControl('discount').invalid && (form.getControl('discount').dirty || form.getControl('discount').touched)">
-            <div *ngIf="form.getControl('discount').errors.required" class="help-block">Discount is required</div>
+          <div class="alert alert-danger" *ngIf="form.getControl('userId').invalid && (form.getControl('userId').dirty || form.getControl('userId').touched)">
+            <div *ngIf="form.getControl('userId').errors.required" class="help-block">User is required</div>
           </div>
         </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+          <mat-label>Select place</mat-label>
+            <mat-select formControlName="places" multiple>
+              <mat-option *ngFor="let place of places" [value]="place.id">{{place.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('places').invalid && (form.getControl('places').dirty || form.getControl('places').touched)">
+            <div *ngIf="form.getControl('places').errors.required" class="help-block">Place is required</div>
+          </div>
+        </div>
+        <agm-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom">
+          <ng-container *ngFor="let place of places">
+            <agm-marker *ngIf="checkInForm(place.id)" [latitude]="place.coords[0].lat" [longitude]="place.coords[0].lng" [label]="'M'"></agm-marker>
+          </ng-container>
+        </agm-map>
         <div class="form-group">
           <button mat-raised-button color="primary" (click)="create()" class="btn btn-primary">{{permission ? 'Update' : 'Create'}}</button>
           <img *ngIf="loading"

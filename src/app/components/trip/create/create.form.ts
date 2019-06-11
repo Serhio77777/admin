@@ -17,18 +17,23 @@ export default class CreateUserForm {
   // set form fields with validation rules
   public createForm() {
     this.formGroup = this.formBuilder.group({
-      image: new FormControl(this.model.image),
+      userId: new FormControl(this.model.userId, [Validators.required]),
       name: new FormControl(this.model.name, [Validators.required]),
-      discount: new FormControl(this.model.discount, [Validators.required])
+      description: new FormControl(this.model.description),
+      places: new FormControl(this.model.places, [Validators.required])
     });
     this.formGroup.valueChanges.subscribe(data => {
-      this.model.image = data.image;
       this.model.name = data.name;
-      this.model.discount = data.discount;
+      this.model.userId = data.userId;
+      this.model.places = data.places;
+      this.model.description = data.description;
     });
   }
+
   // form update
   public patchForm(data: any): void {
+    console.log(data.places)
+    data.places = data.places.map(place => place.id)
     this.formGroup.patchValue(data);
     Object.keys(data).forEach(field => {
       this.model[field] = data[field];

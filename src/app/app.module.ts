@@ -52,7 +52,6 @@ import { RegistrationEffect } from './effects/registration.effect';
 
 // Components
 import { AppComponent } from './app.component';
-import { MapComponent } from './components/map/map.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { OneUserComponent } from './components/user/one/one.component';
@@ -90,7 +89,6 @@ import { HeaderComponent } from './components/parts/header/header.component';
     OneUserComponent,
     CreateUserComponent,
     CreateComponent,
-    MapComponent,
     CountryComponent,
     PlaceComponent,
     CreatePlaceComponent,
