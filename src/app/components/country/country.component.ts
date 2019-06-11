@@ -88,7 +88,7 @@ export class CountryComponent implements OnInit {
     this.router.navigate([`users/${id}`])
   }
 
-  public create(dialogName: string, mode: string, data: number): void {
+  public create(dialogName: string, mode: string, data: any): void {
     if (dialogName === 'country') {
       const dialogRef = this.dialog.open(CreateCountryComponent, mode ? {
         width: '400px',
@@ -104,15 +104,13 @@ export class CountryComponent implements OnInit {
         });
       });
     } else {
-      const dialogRef = this.dialog.open(CreateCityComponent, mode ? {
+      data = mode ? {
+        city: data,
+        countries: this.dataSourceCountries.filteredData
+      } : this.dataSourceCountries.filteredData
+      const dialogRef = this.dialog.open(CreateCityComponent, {
         width: '400px',
-        data: {
-          city: data,
-          countries: this.dataSourceCountries.filteredData
-        }
-      } : { 
-        width: '400px',
-        data: this.dataSourceCountries.filteredData
+        data: data
       });
       dialogRef.afterClosed().subscribe(result => {
         this.store.dispatch({ type: OVERLAY_START });

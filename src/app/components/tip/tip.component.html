@@ -1,0 +1,42 @@
+<div class="tips">
+  <button mat-raised-button color="primary" (click)="create()" class="btn btn-primary">Create</button>
+
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th class="small" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td class="small" mat-cell *matCellDef="let row">{{row.row}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="city">
+        <th class="small" mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+        <td class="small" mat-cell *matCellDef="let row"> {{row.cityId}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="tips">
+        <th class="big" mat-header-cell *matHeaderCellDef mat-sort-header> Tips </th>
+        <td class="big"  mat-cell *matCellDef="let row"> 
+          <p>General: {{row.tips.general}}</p>
+          <p *ngFor="let prop of row.tips.props">{{prop.name}}: {{prop.description}}</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="buttons">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-raised-button color="primary" (click)="create(row.id)" class="btn btn-primary create">Edit</button>
+          <button mat-raised-button color="primary" (click)="delete(row.id)" class="btn btn-primary create">Delete</button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

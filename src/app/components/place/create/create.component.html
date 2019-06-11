@@ -1,0 +1,60 @@
+<button mat-raised-button color="primary" (click)="goBack()" class="btn btn-primary">Back</button>
+<div class="col-md-6 offset-md-3 create-user">
+    <mat-card>
+      <h1>{{permission ? 'Update' : 'Create'}}</h1>
+      <form name="form" [formGroup]="form.formGroup" novalidate>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Email" type="text" class="form-control" name="email" formControlName="email" required />
+          </mat-form-field>
+           <div class="alert alert-danger" *ngIf="form.getControl('email').invalid && (form.getControl('email').dirty || form.getControl('email').touched)">
+             <div *ngIf="form.getControl('email').errors.required" class="help-block">Email is required</div>
+           </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="First Name" type="text" class="form-control" name="firstName" formControlName="firstName" required />
+          </mat-form-field>
+            <div class="alert alert-danger" *ngIf="form.getControl('firstName').invalid && (form.getControl('firstName').dirty || form.getControl('firstName').touched)">
+              <div *ngIf="form.getControl('firstName').errors.required" class="help-block">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Surname" type="text" class="form-control" name="surName" formControlName="surName" required />
+          </mat-form-field>
+            <div class="alert alert-danger" *ngIf="form.getControl('surName').invalid && (form.getControl('surName').dirty || form.getControl('surName').touched)">
+              <div *ngIf="form.getControl('surName').errors.required" class="help-block">Surname is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+          <mat-label>Select user role</mat-label>
+            <select matNativeControl required formControlName="role">
+              <option label="--select role --"></option>
+              <option value="USER">USER</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+            </select>
+          </mat-form-field>
+            <div class="alert alert-danger" *ngIf="form.getControl('role').invalid && (form.getControl('role').dirty || form.getControl('role').touched)">
+              <div *ngIf="form.getControl('role').errors.required" class="help-block">Role is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Password" type="password" class="form-control" name="password" formControlName="password" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('password').invalid && (form.getControl('password').dirty || form.getControl('password').touched)">
+            <div *ngIf="form.getControl('password').errors.required" class="help-block">Password is required</div>
+            <div *ngIf="form.getControl('password').hasError('minlength')" class="help-block">Password must has more than 8 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button mat-raised-button color="primary" (click)="create()" class="btn btn-primary">{{permission ? 'Update' : 'Create'}}</button>
+          <img *ngIf="loading"
+               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </div>
+      </form>
+    </mat-card>
+  </div>

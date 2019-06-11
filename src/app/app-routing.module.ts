@@ -8,7 +8,9 @@ import { OneUserComponent } from './components/user/one/one.component';
 import { CreateUserComponent } from './components/user/create/create.component';
 import { MapComponent } from './components/map/map.component';
 import { CountryComponent } from './components/country/country.component';
-import { CityComponent } from './components/city/city.component';
+import { TipComponent } from './components/tip/tip.component';
+import { OneTipComponent } from './components/tip/one/one.component';
+import { CreateTipComponent } from './components/tip/create/create.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -54,8 +56,20 @@ export const routes: Routes = [
     component: CountryComponent,
   },
   {
-    path: 'city',
-    component: CityComponent,
+    path: 'tips',
+    component: TipComponent,
+  },
+  {
+    path: 'tips/create',
+    component: CreateTipComponent,
+  },
+  {
+    path: 'tips/:id',
+    component: OneTipComponent,
+  },
+  {
+    path: 'tips/:id/edit',
+    component: CreateTipComponent,
   },
   {
     path: '',

@@ -1,0 +1,63 @@
+<button mat-raised-button color="primary" (click)="goBack()" class="btn btn-primary">Back</button>
+<div class="col-md-6 offset-md-3 create-user">
+    <mat-card>
+      <h1>{{permission ? 'Update' : 'Create'}}</h1>
+      <form name="form" [formGroup]="form.formGroup" novalidate>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <mat-label>Select country</mat-label>
+            <mat-select required formControlName="cityId">
+              <option label="--select country --"></option>
+              <mat-option *ngFor="let city of cities" [value]="city.id">{{city.name}} ({{city.countryId}})</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('cityId').invalid && (form.getControl('cityId').dirty || form.getControl('cityId').touched)">
+            <div *ngIf="form.getControl('cityId').errors.required" class="help-block">City is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="General" type="text" class="form-control" name="general" formControlName="general" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('general').invalid && (form.getControl('general').dirty || form.getControl('general').touched)">
+            <div *ngIf="form.getControl('general').errors.required" class="help-block">General is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button mat-raised-button color="primary" (click)="form.addProp()" class="btn btn-primary">Add Prop</button>
+          <div class="form-field" formArrayName="props">
+
+              <div *ngFor="let prop of form.propsForms.controls; let i = index" 
+                    [formGroupName]="i">
+        
+                <mat-form-field class="form-field">
+                  <input matInput placeholder="Name" type="text" class="form-control" name="general" formControlName="name" required />
+                </mat-form-field>
+                <div class="alert alert-danger" *ngIf="prop.get('name').invalid && (prop.get('name').dirty || prop.get('name').touched)">
+                  <div *ngIf="prop.get('name').errors.required" class="help-block">Name is required</div>
+                </div>
+
+                <mat-form-field class="form-field">
+                  <input matInput placeholder="Description" type="text" class="form-control" name="general" formControlName="description" required />
+                </mat-form-field>
+                <div class="alert alert-danger" *ngIf="prop.get('description').invalid && (prop.get('description').dirty || prop.get('description').touched)">
+                  <div *ngIf="prop.get('description').errors.required" class="help-block">Description is required</div>
+                </div>
+        
+                <button mat-raised-button color="primary" (click)="form.deleteProp(i)" class="btn btn-primary">Delete</button>
+        
+              </div>          
+            </div>
+          <!-- <div class="alert alert-danger" *ngIf="form.getControl('password').invalid && (form.getControl('password').dirty || form.getControl('password').touched)">
+            <div *ngIf="form.getControl('password').errors.required" class="help-block">Password is required</div>
+            <div *ngIf="form.getControl('password').hasError('minlength')" class="help-block">Password must has more than 8 characters</div>
+          </div> -->
+        </div>
+        <div class="form-group">
+        <button mat-raised-button color="primary" (click)="create()" class="btn btn-primary">{{permission ? 'Update' : 'Create'}}</button>
+        <img *ngIf="loading"
+              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </div>
+      </form>
+    </mat-card>
+  </div>

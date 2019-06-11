@@ -63,7 +63,9 @@ import { CreateCityComponent } from './components/country/create-city/create-cit
 import { CityComponent } from './components/city/city.component';
 import { PlaceComponent } from './components/city/place/place.component';
 import { TripComponent } from './components/city/trip/trip.component';
-import { TipComponent } from './components/city/tip/tip.component';
+import { TipComponent } from './components/tip/tip.component';
+import { OneTipComponent } from './components/tip/one/one.component';
+import { CreateTipComponent } from './components/tip/create/create.component';
 import { DiscountComponent } from './components/city/discount/discount.component';
 import { ErrorComponent } from './components/parts/error/error.component';
 import { ModalComponent } from './components/parts/modal/modal.component';
@@ -89,6 +91,8 @@ import { HeaderComponent } from './components/parts/header/header.component';
     PlaceComponent,
     TripComponent,
     TipComponent,
+    OneTipComponent,
+    CreateTipComponent,
     DiscountComponent,
     ErrorComponent,
     ModalComponent,
@@ -157,7 +161,12 @@ import { HeaderComponent } from './components/parts/header/header.component';
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorComponent, ModalComponent, CreateCountryComponent, CreateCityComponent]
+  entryComponents: [
+    ErrorComponent, 
+    ModalComponent,
+    CreateCountryComponent, 
+    CreateCityComponent
+  ]
 })
 export class AppModule { }
      
