@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://full-tourism.herokuapp.com/api/v1'
+  apiUrl: 'https://my-project-1474294752715.appspot.com/api/v1'
 };
