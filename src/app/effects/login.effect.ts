@@ -56,10 +56,11 @@ export class LoginEffect {
   }
   // set data on success
   public success(data: PostCredentialsResponse): void {
+    localStorage.setItem('login', data.userHash)
     this.store.dispatch({ type: OVERLAY_FINISH });
     this.store.dispatch({
       type: LOGIN_REQUEST_SUCCESS,
-      payload: {}
+      payload: data
     });
   }
   // error handler

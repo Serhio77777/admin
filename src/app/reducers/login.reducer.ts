@@ -31,9 +31,9 @@ export const login: ActionReducer<any> = (state: Login = defaultLoginState, acti
         ...state
       };
     case LOGIN_REQUEST_CLEAN:
-      state = update(state, { $merge: action.payload});
+      localStorage.removeItem('login', data.userHash)
       return {
-        ...state
+        ...defaultLoginState
       };
     default:
       return {

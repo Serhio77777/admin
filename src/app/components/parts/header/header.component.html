@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" *ngIf="permission">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>Logo</span>
@@ -10,7 +10,7 @@
       <button mat-button routerLink="/places">Places</button>
       <button mat-button routerLink="/discountes">Discounts</button>
       <div class="flex-spacer"></div>
-      <button mat-button routerLink="/login">Login</button>
+      <button mat-button (click)="logout()">Logout</button>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>

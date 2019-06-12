@@ -34,7 +34,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     this.form = new CreateForm(this.model);
 
     this.subscribtion$ = store.select<any>('dataOne').subscribe(data => {
-      if (data.user) {
+      if (data.user && !this.form.model.email) {
         this.form.patchForm(data.user);
       }
     });
