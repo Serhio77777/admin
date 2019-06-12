@@ -1,5 +1,6 @@
-<button mat-raised-button color="primary" (click)="goBack()" class="btn btn-primary">Back</button>
-<div class="col-md-6 offset-md-3 create-user">
+<div class="container">
+  <button mat-raised-button color="primary" (click)="goBack()" class="btn btn-primary">Back</button>
+  <div class="col-md-6 offset-md-3 create-user">
     <mat-card>
       <h1>{{permission ? 'Update' : 'Create'}}</h1>
       <form name="form" [formGroup]="form.formGroup" novalidate>
@@ -57,3 +58,4 @@
       </form>
     </mat-card>
   </div>
+</div>

@@ -21,6 +21,7 @@ export default class CreateUserForm {
       firstName: new FormControl(this.model.firstName, [Validators.required]),
       surName: new FormControl(this.model.surName, [Validators.required]),
       password: new FormControl(this.model.password, [Validators.required]),
+      image: new FormControl(this.model.password),
       role: new FormControl(this.model.role, [Validators.required, Validators.minLength(8)]),
     });
     this.formGroup.valueChanges.subscribe(data => {
@@ -29,6 +30,7 @@ export default class CreateUserForm {
       this.model.password = data.password;
       this.model.firstName = data.firstName;
       this.model.role = data.role;
+      this.model.image = data.image;
     });
   }
   // form update

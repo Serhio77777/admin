@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Components
-import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { OneUserComponent } from './components/user/one/one.component';
 import { CreateUserComponent } from './components/user/create/create.component';
@@ -14,7 +13,6 @@ import { CreateCompanyComponent } from './components/company/create/create.compo
 import { DiscountComponent } from './components/discount/discount.component';
 import { CreateDiscountComponent } from './components/discount/create/create.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PlaceComponent } from './components/place/place.component';
 import { CreatePlaceComponent } from './components/place/create/create.component';
@@ -30,14 +28,6 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'registration',
-    component: RegistrationComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
   },
   {
     path: 'users',

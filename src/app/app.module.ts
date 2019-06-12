@@ -52,7 +52,6 @@ import { RegistrationEffect } from './effects/registration.effect';
 
 // Components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { OneUserComponent } from './components/user/one/one.component';
 import { CreateUserComponent } from './components/user/create/create.component';
@@ -74,21 +73,16 @@ import { DiscountComponent } from './components/discount/discount.component';
 import { CreateDiscountComponent } from './components/discount/create/create.component';
 import { ErrorComponent } from './components/parts/error/error.component';
 import { ModalComponent } from './components/parts/modal/modal.component';
-import { ShowOneComponent } from './components/parts/show-one/show-one.component';
-import { CreateComponent } from './components/parts/create/create.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { HeaderComponent } from './components/parts/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     UserComponent,
     NotFoundComponent,
     OneUserComponent,
     CreateUserComponent,
-    CreateComponent,
     CountryComponent,
     PlaceComponent,
     CreatePlaceComponent,
@@ -104,9 +98,7 @@ import { HeaderComponent } from './components/parts/header/header.component';
     CreateDiscountComponent,
     ErrorComponent,
     ModalComponent,
-    ShowOneComponent,
     LoginComponent,
-    RegistrationComponent,
     HeaderComponent,
     CreateCityComponent,
     CreateCountryComponent
