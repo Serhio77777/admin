@@ -58,6 +58,10 @@ export class TripComponent implements OnInit {
     this.router.navigate([id ? `/trips/${id}/edit` : `/trips/create`])
   }
 
+  public goNext(id: number | string): void {
+    this.router.navigate([`trips/${id}`])
+  }
+
   public delete(id: number): void {
     this.store.dispatch({ 
       type: DELETE_REQUEST,

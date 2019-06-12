@@ -1,18 +1,18 @@
-<div class="container">
+<div class="container place">
   <button mat-raised-button color="primary" (click)="goBack()" class="btn btn-primary">Back</button>
   <mat-card class="main-card" *ngIf="model">
     <mat-card-content>
       <div class="main-info">
         <div class="block">
-          <img class="header-image" src="{{model.image ? model.image : 'https://questortech.com/wp-content/uploads/2018/07/placeholder-man.png'}}">
+          <p>Name: {{model.name}}</p>
+          <p>Description: {{model.description}}</p>
+          <agm-map [latitude]="model.places && model.places[0].coords[0].lat" [longitude]="model.places && model.places[0].coords[0].lng" [zoom]="3" (mapClick)="placeMarker($event)">
+            <agm-marker *ngFor="let place of model.places" [latitude]="place.coords[0].lat" [longitude]="place.coords[0].lng" [label]="'M'">
+            </agm-marker>
+          </agm-map>
         </div>
-        <div class="block">
-          <p>Name: {{model.firstName}} {{model.surName}}</p>
-          <p>Email: {{model.email}}</p>
-          <p>Role: {{model.role}}</p>
         </div>
-      </div>
     </mat-card-content>
   </mat-card>
 </div>
-
+  

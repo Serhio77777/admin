@@ -23,7 +23,7 @@ export class OneTripComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.subscribtion$ = store.select<any>('dataOne').subscribe(data => {
-      if (data.trip && this.model.name) {
+      if (data.trip && !this.model.name) {
         this.model = data.trip;
       }
     });
