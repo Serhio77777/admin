@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { State } from '../../reducers';
 import { SHOW_HEADER, OVERLAY_START } from '../../actions/header.action';
+import { DELETE_REQUEST } from '../../actions/delete.action';
 import { Data, DATA_REQUEST } from '../../actions/data.action';
 
 @Component({
@@ -13,7 +14,7 @@ import { Data, DATA_REQUEST } from '../../actions/data.action';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'image', 'name', 'role'];
+  public displayedColumns: string[] = ['id', 'image', 'name', 'role', 'buttons'];
   public dataSource: MatTableDataSource<any>;
   public dataStore: any = {};
 
@@ -57,8 +58,18 @@ export class UserComponent implements OnInit {
     this.router.navigate([`users/${id}`])
   }
 
-  public create(): void {
-    this.router.navigate([`/users/create`])
+  public create(id: number): void {
+    this.router.navigate([id ? `/users/${id}/edit` : `/users/create`])
+  }
+
+  public delete(id: number): void {
+    this.store.dispatch({ 
+      type: DELETE_REQUEST,
+      payload: {
+        url: `/user/${id}`,
+        request: `/users?res=full`
+      }
+    });
   }
 
 }

@@ -70,7 +70,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   }
 
   public goBack(): void {
-    this.router.navigate([`/users/${this.id}`])
+    this.router.navigate([`/users`])
   }
 
   // make subscribe on a component initialization

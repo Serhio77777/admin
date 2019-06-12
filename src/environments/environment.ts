@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'https://full-tourism.herokuapp.com/api/v1'
-  apiUrl: 'http://localhost:27182/api/v1'
+  apiUrl: 'https://my-project-1474294752715.appspot.com/api/v1'
+  // apiUrl: 'http://localhost:27182/api/v1'
 };
 
 /*

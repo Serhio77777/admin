@@ -44,10 +44,6 @@ export class OneUserComponent implements OnInit {
     this.router.navigate(['/users'])
   }
 
-  public edit(): void {
-    this.router.navigate([`/users/${this.id}/edit`])
-  }
-
   public ngOnInit(): void {
   }
 }

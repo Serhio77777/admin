@@ -1,16 +1,25 @@
-table {
-    width: 100%;
-    img {
-        width: 80px;
-        margin: 20px 0;
+.users {
+    margin: 10px;
+    table {
+        width: 100%;
+        img {
+            width: 80px;
+            margin: 20px 0;
+        }
     }
+    
+    .mat-form-field {
+        font-size: 14px;
+        width: 100%;
+    }
+    
+    td, th {
+        width: 25%;
+    }
+    button {
+        margin: 10px 0;
+        width: 100px;
+    }
+
 }
 
-.mat-form-field {
-    font-size: 14px;
-    width: 100%;
-}
-
-td, th {
-    width: 25%;
-}

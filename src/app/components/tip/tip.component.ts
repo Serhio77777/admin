@@ -35,9 +35,11 @@ export class TipComponent implements OnInit {
       }
     });
     this.dataStore.model$ = store.select<any>('data').subscribe(data => {
-      this.dataSource = new MatTableDataSource(data.tips);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      if (data.tips && data.tips.length) {
+        this.dataSource = new MatTableDataSource(data.tips);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
     });
   }
 

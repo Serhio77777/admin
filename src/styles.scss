@@ -31,3 +31,10 @@ $dasha-test-admin-theme: mat-light-theme($dasha-test-admin-primary, $dasha-test-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.container {
+    margin: 10px;
+}
+button {
+    margin: 10px 0 !important;
+    width: 100px;
+}
