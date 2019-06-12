@@ -31,7 +31,7 @@ export const login: ActionReducer<any> = (state: Login = defaultLoginState, acti
         ...state
       };
     case LOGIN_REQUEST_CLEAN:
-      localStorage.removeItem('login', data.userHash)
+      localStorage.removeItem('login')
       return {
         ...defaultLoginState
       };

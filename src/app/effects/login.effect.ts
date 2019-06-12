@@ -55,7 +55,7 @@ export class LoginEffect {
     };
   }
   // set data on success
-  public success(data: PostCredentialsResponse): void {
+  public success(data: any): void {
     localStorage.setItem('login', data.userHash)
     this.store.dispatch({ type: OVERLAY_FINISH });
     this.store.dispatch({
