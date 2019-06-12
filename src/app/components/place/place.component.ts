@@ -58,6 +58,10 @@ export class PlaceComponent implements OnInit {
     this.router.navigate([id ? `/places/${id}/edit` : `/places/create`])
   }
 
+  public goNext(id: number | string): void {
+    this.router.navigate([`places/${id}`])
+  }
+
   public delete(id: number): void {
     this.store.dispatch({ 
       type: DELETE_REQUEST,

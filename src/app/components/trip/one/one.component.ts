@@ -23,7 +23,9 @@ export class OneTripComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.subscribtion$ = store.select<any>('dataOne').subscribe(data => {
-      this.model = data.user;
+      if (data.trip && this.model.name) {
+        this.model = data.trip;
+      }
     });
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
@@ -31,8 +33,8 @@ export class OneTripComponent implements OnInit {
       this.store.dispatch({ 
         type: DATA_ONE_REQUEST,
         payload: {
-          propName: 'user',
-          url: `/user/${this.id}`
+          propName: 'trip',
+          url: `/trip/${this.id}`
         }
       });
     });
@@ -41,11 +43,7 @@ export class OneTripComponent implements OnInit {
   public ngOnDestroy(): void {}
 
   public goBack(): void {
-    this.router.navigate(['/users'])
-  }
-
-  public edit(): void {
-    this.router.navigate([`/users/${this.id}/edit`])
+    this.router.navigate(['/trips'])
   }
 
   public ngOnInit(): void {

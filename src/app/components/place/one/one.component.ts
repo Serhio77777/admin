@@ -12,10 +12,11 @@ import { Data, DATA_ONE_REQUEST } from '../../../actions/data-one.action';
   templateUrl: './one.component.html',
   styleUrls: ['./one.component.scss']
 })
-export class OnePlaceComponent implements OnInit {
+export class OnePlaceComponent implements OnInit, OnDestroy {
 
   public model: any = {};
   private id: string;
+  public cities: any = [];
   public subscribtion$: any = null;
   constructor(
     private store: Store<State>,
@@ -23,27 +24,31 @@ export class OnePlaceComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.subscribtion$ = store.select<any>('dataOne').subscribe(data => {
-      this.model = data.user;
+      if (data.place && !this.model.name) {
+        this.model = data.place;
+      }
     });
+
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
       this.store.dispatch({ type: OVERLAY_START });
       this.store.dispatch({ 
         type: DATA_ONE_REQUEST,
         payload: {
-          propName: 'user',
-          url: `/user/${this.id}`
+          propName: 'place',
+          url: `/place/${this.id}`
         }
       });
     });
   }
   
-  public ngOnDestroy(): void {}
-
-  public goBack(): void {
-    this.router.navigate(['/users'])
+  public ngOnDestroy(): void {
+    this.subscribtion$.unsubscribe();
   }
 
+  public goBack(): void {
+    this.router.navigate(['/places'])
+  }
 
   public ngOnInit(): void {
   }
